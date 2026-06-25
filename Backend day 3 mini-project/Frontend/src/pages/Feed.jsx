@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 
+
 const Feed = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([
@@ -15,6 +16,8 @@ const Feed = () => {
     // }
   ]);
 
+  const [loading, setLoading] = useState(true);
+
   const handleDelete = async (id) => {
     try{
         axios.delete(`https://backend-1-cvbd.onrender.com/posts/${id}`)
@@ -23,14 +26,22 @@ const Feed = () => {
       }
   }
   useEffect(() => {
+    try{
+      setLoading(true);
     axios.get("https://backend-1-cvbd.onrender.com/posts").then((res) => {
       setPosts(res.data.posts);
     });
+  }catch(err){
+    alert('geting post error: ', err);
+  } finally {
+    setLoading(false);
+  }
 
   }, [handleDelete]);
-
   
-  
+  if(loading){
+    <p>loading...</p>
+  }
   return (
     <section className="feed-section">
       <Button
