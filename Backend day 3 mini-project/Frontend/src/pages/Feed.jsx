@@ -23,7 +23,7 @@ const Feed = () => {
       }
   }
   useEffect(() => {
-    axios.get("http://localhost:3000/posts").then((res) => {
+    axios.get("https://backend-1-cvbd.onrender.com/posts").then((res) => {
       setPosts(res.data.posts);
     });
 
