@@ -17,7 +17,7 @@ const Feed = () => {
 
   const handleDelete = async (id) => {
     try{
-        axios.delete(`http://localhost:3000/posts/${id}`)
+        axios.delete(`https://backend-1-cvbd.onrender.com/posts/${id}`)
       }catch(err){
         alert('Error deleting post: ', err)
       }
